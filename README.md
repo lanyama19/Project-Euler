@@ -8,7 +8,7 @@ Find the sum of all the multiples of 3 or 5 below the provided parameter value `
 
 ## Solution Strategy
 
-### 1. Review the Arithmetic Series Formula
+### 1. Recall the Arithmetic Series Formula
 
 The sum of the first `n` terms of an arithmetic sequence with first term `a` and common difference `d` is:
 
@@ -25,7 +25,7 @@ $$
 Where:
 
 * `d` is the base (e.g., 3 or 5),
-* &#x20;`m`  is the number of terms under ( N ): ( $\left\lfloor \frac{N - 1}{d} \right\rfloor$ )
+* &#x20;`m`  is the number of terms under ( N ):&#x20;
 
 ***
 
@@ -33,8 +33,36 @@ Where:
 
 If we sum all multiples of 3 and all multiples of 5 below ( N ), we will **double-count** numbers divisible by both 3 and 5 — i.e., multiples of 15.
 
-To fix this, we apply the **inclusion–exclusion principle**:
+To fix this, we apply the **inclusion–exclusion principle**
 
-\[ \text{Sum} = \text{Sum}_{3} + \text{Sum}_{5} - \text{Sum}\_{15} ]
+$$
+\text{Sum} = \text{Sum}{3} + \text{Sum}{5} - \text{Sum}_{15}
+$$
 
 This ensures each multiple is counted only once.
+
+## Code
+
+```python
+def sum_3_or_5_below(N: int) -> int:
+    """
+    Return the sum of all natural numbers below N that are divisible by 3 or 5.
+    Uses the arithmetic progression formula for efficiency.
+    """
+    def sum_divisible_by(d: int) -> int:
+        m = (N - 1) // d
+        return d * m * (m + 1) // 2
+
+    return (
+        sum_divisible_by(3)
+        + sum_divisible_by(5)
+        - sum_divisible_by(15)  # subtract common multiples to fix double-counting
+    )
+
+
+if __name__ == "__main__":
+    test_inputs = [10, 49, 1000, 8456, 19564]
+    for n in test_inputs:
+        result = sum_3_or_5_below(n)
+        print(f"Sum of multiples of 3 or 5 below {n}: {result}")
+```
