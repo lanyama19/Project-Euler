@@ -8,7 +8,7 @@ The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor
 
 ### 1. Fundamental Theorem of Arithmetic
 
-Every integer $n > 1$ can be written uniquely (up to the order of factors) as a product of primes:
+Every integer $$n > 1$$ can be written uniquely (up to the order of factors) as a product of primes:
 
 $$
 n \;=\; p_1^{\,\alpha_1}\,p_2^{\,\alpha_2}\,\dotsm p_k^{\,\alpha_k},
@@ -16,45 +16,31 @@ n \;=\; p_1^{\,\alpha_1}\,p_2^{\,\alpha_2}\,\dotsm p_k^{\,\alpha_k},
 p_1 < p_2 < \dots < p_k \text{ primes}.
 $$
 
-This guarantees that a “largest prime factor” is well defined—there is exactly one maximal $p\_k$.
+This guarantees that a “largest prime factor” is well defined—there is exactly one maximal $$p_k$$.
 
 ***
 
 ### 2. Square‑Root Bound for Trial Division
 
-If $n$ is composite, it has **at least one** prime factor
+If $$n$$ is composite, it has **at least one** prime factor
 
 $$
 p \;\le\; \sqrt n .
 $$
 
-Proof: assume all factors were $ > \sqrt n $; the product of any two would exceed $n$, contradicting $n$’s factorisation.
+Proof: assume all factors were  $$> \sqrt n$$; the product of any two would exceed $$n$$, contradicting n’s factorisation.
 
-> **Algorithmic consequence** To decide whether $n$ is prime—or to strip off its smallest factor—it is enough to test divisibility by all primes up to $\lfloor\sqrt n\rfloor$.
-
-***
-
-### 3. Residue‑Class Heuristics
-
-After removing the factor 2, every remaining prime lies in a residue class
-
-$$
-p \equiv 1 \pmod 6
-\quad\text{or}\quad
-p \equiv 5 \pmod 6 .
-$$
-
-Iterating candidates as $6k!\pm!1$ skips two thirds of odd integers, speeding up naïve trial division.
+> **Algorithmic consequence** To decide whether `n` is prime—or to strip off its smallest factor—it is enough to test divisibility by all primes up to $$\lfloor\sqrt n\rfloor$$
 
 ***
 
-### 4. Probabilistic Primality Tests
+### 3. Probabilistic Primality Tests
 
-#### 4.1 Miller–Rabin
+#### 3.1 Miller–Rabin
 
-Given an odd $n$, write $n-1 = d,2^{s}$ with $d$ odd. Choose a base $a$ coprime to $n$ and compute $x = a^{d} \bmod n$. If $x \not\in {1,n-1}$ and $x^{2^{r\}}\not\equiv n-1 \pmod n$ for all $0 \le r < s$, then $n$ is **composite**. Otherwise $n$ is _probably prime_. Using a handful of fixed bases makes the test _deterministic_ for 64‑bit integers.
+Given an odd $$n$$, write  $$n-1 = d,2^{s}$$ with $d$ odd. Choose a base $a$ coprime to $n$ and compute $x = a^{d} \bmod n$. If $x \not\in {1,n-1}$ and $x^{2^{r\}}\not\equiv n-1 \pmod n$ for all $0 \le r < s$, then $n$ is **composite**. Otherwise $n$ is _probably prime_. Using a handful of fixed bases makes the test _deterministic_ for 64‑bit integers.
 
-#### 4.2 Pollard’s Rho Idea
+#### 3.2 Pollard’s Rho Idea
 
 Iterate a pseudorandom function
 
@@ -65,18 +51,6 @@ $$
 and look for a cycle. If $n = pq$ is composite, the sequences modulo $p$ and $q$ cycle at different speeds; their difference eventually reveals a non‑trivial factor via $\gcd\bigl(|x\_i - x\_j|,,n\bigr)$.
 
 –– _“Rho” because the generated values trace a Greek‑letter ρ when drawn._ –
-
-***
-
-### 5. Putting It Together
-
-| Step | Action                                                             | Rationale                                           |
-| ---- | ------------------------------------------------------------------ | --------------------------------------------------- |
-| 1    | Remove factor 2 exhaustively                                       | Simplifies to odd $n$.                              |
-| 2    | Trial‑divide by $3,5,7,\dots,\sqrt n$ (only $6k!\pm!1$ candidates) | Quickly strips small factors.                       |
-| 3    | If $n>1$ and $n\le 2^{64}$: run deterministic Miller–Rabin         | Accept or reject primality.                         |
-| 4    | If composite: apply Pollard’s Rho (Brent) recursively              | Finds larger factors in $O(n^{1/4})$ expected time. |
-| 5    | Track the largest prime encountered                                | Final answer.                                       |
 
 ***
 
