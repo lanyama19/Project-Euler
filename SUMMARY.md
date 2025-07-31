@@ -6,3 +6,4 @@
 * [Problem 3: Largest prime factor](problem-3-largest-prime-factor.md)
 * [Problem 4: Largest palindrome product](problem-4-largest-palindrome-product.md)
 * [Problem 5: Smallest multiple](problem-5-smallest-multiple.md)
+* [Problem 6: Sum square difference](problem-6-sum-square-difference.md)
