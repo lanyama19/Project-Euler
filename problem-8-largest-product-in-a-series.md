@@ -10,7 +10,46 @@ Find the `n` adjacent digits in the 1000-digit number that have the greatest pro
 
 ## Solution&#x20;
 
+### Step 1: Cut the Sequence at Zeros
 
+**Motivation**:\
+If a window contains a 0, its product is 0. So we can skip all windows that cross a zero.
+
+**Action**:
+
+* Traverse the digit list.
+* Split it into **zero-free sublists** (i.e., contiguous ranges of digits with no zero).
+* Only process these sublists.
+
+***
+
+### Step 2: Process Each Sublist Independently
+
+For each sublist of length ≥ n:
+
+* Use a **sliding window** of size n.
+* Compute the initial product of the first n digits.
+* Slide the window one step at a time:
+  * Divide out the digit leaving the window.
+  * Multiply in the digit entering the window.
+* Keep track of the **maximum product** seen within this sublist.
+
+This avoids recomputing the full product at every step and stays efficient.
+
+***
+
+### Step 3: Compare Across All Sublists
+
+* After processing all zero-free segments:
+  * Take the maximum of all local maximums.
+* That gives the global maximum product for adjacent n digits.
+
+***
+
+### Complexity
+
+* Time complexity: `O(L)`, where L = total number of digits (e.g., 1000).
+* Space: negligible extra — only local variables and intermediate segments.
 
 ## Code
 
