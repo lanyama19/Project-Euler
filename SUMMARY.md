@@ -9,3 +9,4 @@
 * [Problem 6: Sum square difference](problem-6-sum-square-difference.md)
 * [Problem 7: 10001st prime](problem-7-10001st-prime.md)
 * [Problem 8: Largest product in a series](problem-8-largest-product-in-a-series.md)
+* [Problem 9: Special Pythagorean triplet](problem-9-special-pythagorean-triplet.md)
