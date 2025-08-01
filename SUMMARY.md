@@ -10,3 +10,5 @@
 * [Problem 7: 10001st prime](problem-7-10001st-prime.md)
 * [Problem 8: Largest product in a series](problem-8-largest-product-in-a-series.md)
 * [Problem 9: Special Pythagorean triplet](problem-9-special-pythagorean-triplet.md)
+* [Problem 10: Summation of primes](problem-10-summation-of-primes.md)
+* [Problem 11: Largest product in a grid](problem-11-largest-product-in-a-grid.md)
