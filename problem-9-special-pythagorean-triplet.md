@@ -71,3 +71,48 @@ We seek integers $$(k, m, n)$$ satisfying this equation and the parameter condit
 
 ## Python Code Implementation
 
+```python
+from math import gcd
+
+def all_special_triplets(P):
+    """
+    Returns a list of tuples (a, b, c, product) for all Pythagorean triplets
+    such that a < b < c, a + b + c = P, and a^2 + b^2 = c^2.
+    Only positive integer solutions are returned.
+    """
+    triplets = []
+    p = P // 2
+    for m in range(2, int(p ** 0.5) + 1):
+        if p % m != 0:
+            continue
+        q = p // m
+        for d in range(m + 1, q + 1):
+            if q % d != 0:
+                continue
+            n = d - m
+            k = q // d
+            if n <= 0 or (m - n) % 2 == 0 or gcd(m, n) != 1:
+                continue
+            a = k * (m * m - n * n)
+            b = k * (2 * m * n)
+            c = k * (m * m + n * n)
+            # All sides must be positive and a < b < c
+            sides = sorted([a, b, c])
+            if all(x > 0 for x in sides) and sides[0] < sides[1] < sides[2] and sum(sides) == P:
+                triplet = (sides[0], sides[1], sides[2], sides[0] * sides[1] * sides[2])
+                if triplet not in triplets:  # Avoid duplicates
+                    triplets.append(triplet)
+    return triplets
+
+if __name__ == "__main__":
+    test_input = [24, 120, 1000]
+    for P in test_input:
+        print(f"P = {P}:")
+        solutions = all_special_triplets(P)
+        if solutions:
+            for idx, (a, b, c, product) in enumerate(solutions, 1):
+                print(f"  Solution {idx}: a={a}, b={b}, c={c}, abc={product}")
+        else:
+            print("  No solution found.")
+        print()
+```
