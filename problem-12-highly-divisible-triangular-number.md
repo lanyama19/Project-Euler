@@ -40,7 +40,7 @@ Because **k and k+1 are always coprime**, we split the triangle number into two 
 | If k is... | Split as                           | Example for k        |
 | ---------- | ---------------------------------- | -------------------- |
 | **even**   | $$T_k = \frac{k}{2} \times (k+1)$$ | $$T_8 = 4 \times 9$$ |
-| **odd**    | (T\_k = k \times \frac{k+1}{2})    | (T\_7 = 7 \times 4)  |
+| **odd**    | $$T_k = k \times \frac{k+1}{2}$$   | $$T_7 = 7 \times 4$$ |
 
 ***
 
@@ -52,21 +52,21 @@ Factorize both parts **separately** (they are coprime).
 * **Combine (union):**
   * For each unique prime, if it appears in both, sum their exponents.
 
-**Example 1: (T\_7 = 7 \times 4 = 28)**
+**Example 1:**  $$T_7 = 7 \times 4 = 28$$
 
-| Part      | Value | Factorization | As Dict |
-| --------- | ----- | ------------- | ------- |
-| (k)       | 7     | (7^1)         | {7: 1}  |
-| ((k+1)/2) | 4     | (2^2)         | {2: 2}  |
+| Part    | Value | Factorization | As Dict |
+| ------- | ----- | ------------- | ------- |
+| k       | 7     | (7^1)         | {7: 1}  |
+| (k+1)/2 | 4     | (2^2)         | {2: 2}  |
 
 * **Union:** `{7: 1} ∪ {2: 2} = {2: 2, 7: 1}`
 
 **Example 2: (T\_8 = 4 \times 9 = 36)**
 
-| Part  | Value | Factorization | As Dict |
-| ----- | ----- | ------------- | ------- |
-| (k/2) | 4     | (2^2)         | {2: 2}  |
-| (k+1) | 9     | (3^2)         | {3: 2}  |
+| Part | Value | Factorization | As Dict |
+| ---- | ----- | ------------- | ------- |
+| k/2  | 4     | (2^2)         | {2: 2}  |
+| k+1  | 9     | (3^2)         | {3: 2}  |
 
 * **Union:** `{2: 2} ∪ {3: 2} = {2: 2, 3: 2}`
 
@@ -74,11 +74,84 @@ Factorize both parts **separately** (they are coprime).
 
 #### Step 4: Count Divisors
 
-Given a factorization: \[ N = p\_1^{e\_1} p\_2^{e\_2} \cdots p\_m^{e\_m} ] the number of divisors is: \[ d(N) = (e\_1 + 1)(e\_2 + 1)\cdots(e\_m + 1) ]
+Given a factorization: $$N = p_1^{e_1} p_2^{e_2} \cdots p_m^{e_m}$$
+
+The number of divisors is: $$d(N) = (e_1 + 1)(e_2 + 1)\cdots(e_m + 1)$$
 
 **Example**
 
-* For (28 = 2^2 \times 7^1): (d(28) = (2+1) \times (1+1) = 6)
-* For (36 = 2^2 \times 3^2): (d(36) = (2+1) \times (2+1) = 9)
+* For $$28 = 2^2 \times 7^1$$:  $$d(28) = (2+1) \times (1+1) = 6$$
+* For $$36 = 2^2 \times 3^2$$:  $$d(36) = (2+1) \times (2+1) = 9$$
 
 ***
+
+## Code
+
+```python
+from collections import Counter
+
+def prime_factors(n):
+    """
+    Returns the prime factorization of n as a Counter {prime: exponent}
+    Uses trial division.
+    """
+    factors = Counter()
+    # Handle 2 separately
+    while n % 2 == 0:
+        factors[2] += 1
+        n //= 2
+    # Odd factors
+    f = 3
+    while f * f <= n:
+        while n % f == 0:
+            factors[f] += 1
+            n //= f
+        f += 2
+    if n > 1:
+        factors[n] += 1
+    return factors
+
+def merge_factors(f1, f2):
+    """
+    Merge two Counter dicts (sum exponents for shared primes)
+    """
+    return f1 + f2
+
+def divisor_count(factors):
+    """
+    Number of positive divisors: product of (exponent + 1) for all primes.
+    """
+    product = 1
+    for exp in factors.values():
+        product *= (exp + 1)
+    return product
+
+def first_triangle_over_n_divisors(n):
+    """
+    Returns the first triangle number with more than n divisors.
+    """
+    k = 1
+    while True:
+        # Split triangle number for coprime factorization
+        if k % 2 == 0:
+            a = k // 2
+            b = k + 1
+        else:
+            a = k
+            b = (k + 1) // 2
+
+        fa = prime_factors(a)
+        fb = prime_factors(b)
+        merged = merge_factors(fa, fb)
+        divisors = divisor_count(merged)
+        if divisors > n:
+            return a * b
+        k += 1
+
+if __name__ == "__main__":
+    test_cases = [5, 23, 167, 374, 500]
+    for n in test_cases:
+        result = first_triangle_over_n_divisors(n)
+        print(f"First triangle number with over {n} divisors: {result}")
+
+```
