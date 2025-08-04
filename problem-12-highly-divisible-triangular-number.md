@@ -24,3 +24,61 @@ Let us list the factors of the first seven triangle numbers:
 
 We can see that 28 is the first triangle number to have over five divisors. What is the value of the first triangle number to have over `n` divisors?
 
+## Solution
+
+#### Step 1: Generate Triangle Numbers
+
+* Start with k = 1.
+* For each k, the triangle number is  $$T_k = k(k+1)/2$$.
+
+***
+
+#### Step 2: Split for Easier Factorization
+
+Because **k and k+1 are always coprime**, we split the triangle number into two parts:
+
+| If k is... | Split as                           | Example for k        |
+| ---------- | ---------------------------------- | -------------------- |
+| **even**   | $$T_k = \frac{k}{2} \times (k+1)$$ | $$T_8 = 4 \times 9$$ |
+| **odd**    | (T\_k = k \times \frac{k+1}{2})    | (T\_7 = 7 \times 4)  |
+
+***
+
+#### Step 3: Prime Factorization and "Union"
+
+Factorize both parts **separately** (they are coprime).
+
+* Express each part as a dictionary: `{prime: exponent}`
+* **Combine (union):**
+  * For each unique prime, if it appears in both, sum their exponents.
+
+**Example 1: (T\_7 = 7 \times 4 = 28)**
+
+| Part      | Value | Factorization | As Dict |
+| --------- | ----- | ------------- | ------- |
+| (k)       | 7     | (7^1)         | {7: 1}  |
+| ((k+1)/2) | 4     | (2^2)         | {2: 2}  |
+
+* **Union:** `{7: 1} ∪ {2: 2} = {2: 2, 7: 1}`
+
+**Example 2: (T\_8 = 4 \times 9 = 36)**
+
+| Part  | Value | Factorization | As Dict |
+| ----- | ----- | ------------- | ------- |
+| (k/2) | 4     | (2^2)         | {2: 2}  |
+| (k+1) | 9     | (3^2)         | {3: 2}  |
+
+* **Union:** `{2: 2} ∪ {3: 2} = {2: 2, 3: 2}`
+
+***
+
+#### Step 4: Count Divisors
+
+Given a factorization: \[ N = p\_1^{e\_1} p\_2^{e\_2} \cdots p\_m^{e\_m} ] the number of divisors is: \[ d(N) = (e\_1 + 1)(e\_2 + 1)\cdots(e\_m + 1) ]
+
+**Example**
+
+* For (28 = 2^2 \times 7^1): (d(28) = (2+1) \times (1+1) = 6)
+* For (36 = 2^2 \times 3^2): (d(36) = (2+1) \times (2+1) = 9)
+
+***

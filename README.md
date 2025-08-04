@@ -1,8 +1,8 @@
-# Project Euler Solutions
+# README
 
 This repository collects my notes and solutions for selected Project Euler challenges.
 
-The complete problem set is available from [freeCodeCamp](https://www.freecodecamp.org/learn/project-euler/).  
+The complete problem set is available from [freeCodeCamp](https://www.freecodecamp.org/learn/project-euler/).\
 You can also find a compiled version of my solutions on [GitBook](https://frankmas-organization.gitbook.io/project-euler/).
 
 ## Table of Contents
@@ -11,3 +11,12 @@ You can also find a compiled version of my solutions on [GitBook](https://frankm
 * [Problem 2: Even Fibonacci Numbers](problem-2-even-fibonacci-numbers.md)
 * [Problem 3: Largest prime factor](problem-3-largest-prime-factor.md)
 * [Problem 4: Largest palindrome product](problem-4-largest-palindrome-product.md)
+* [Problem 5: Smallest multiple](problem-5-smallest-multiple.md)
+* [Problem 6: Sum square difference](problem-6-sum-square-difference.md)
+* [Problem 7: 10001st prime](problem-7-10001st-prime.md)
+* [Problem 8: Largest product in a series](problem-8-largest-product-in-a-series.md)
+* [Problem 9: Special Pythagorean triplet](problem-9-special-pythagorean-triplet.md)
+* [Problem 10: Summation of primes](problem-10-summation-of-primes.md)
+* [Problem 11: Largest product in a grid](problem-11-largest-product-in-a-grid.md)
+* [Problem 12: Highly divisible triangular number](problem-12-highly-divisible-triangular-number.md)
+
