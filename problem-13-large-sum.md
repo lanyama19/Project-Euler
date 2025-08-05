@@ -106,3 +106,27 @@ Work out the first ten digits of the sum of the following one-hundred 50-digit n
 53503534226472524250874054075591789781264330331690
 
 ## Solution
+
+### 1 Built-in Integer Capacity in Mainstream Languages
+
+| Language       | Fixed-Width Types Available “out of the box”            | Maximum Positive Value¹ | Native Arbitrary-Precision?      | Typical Approach for Problem 13                                                                  |
+| -------------- | ------------------------------------------------------- | ----------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **C / C++**    | `int32_t`, `int64_t`, … (implementation-defined widths) | `2⁶³ – 1` ≈ 9.22 × 10¹⁸ | No                               | Use a library such as **Boost.Multiprecision `cpp_int`**, **GMP**, or hand-coded column addition |
+| **Java**       | `int` (32 bit), `long` (64 bit)                         | same as above           | **Yes** — `java.math.BigInteger` | Just store every number as a `BigInteger` and add                                                |
+| **JavaScript** | `Number` (IEEE-754 double) — safe up to `2⁵³ – 1`       | `≈ 9 × 10¹⁵`            | **Yes** — `BigInt` (ES 2020+)    | Convert strings to `BigInt` literals (e.g. `123n`)                                               |
+| **Python**     | `int` is arbitrary precision                            | _Memory-bound only_     | **Built-in**                     | Read as `int`, accumulate; nothing else needed                                                   |
+
+> ¹ Values shown for signed 64-bit two’s-complement integers; unsigned variants are twice as large but still far smaller than a 50-digit number (\~10⁴⁹).
+
+A single 50-digit decimal already dwarfs every 64-bit type; therefore **arbitrary-precision** (built-in or via library) is mandatory unless you re-implement addition yourself.
+
+***
+
+### 2 Two Practical Strategies
+
+| Strategy                           | Core Idea                                                                                           | Time / Space Complexity | When to Use                                                                                    |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------- |
+| **A — High-precision accumulator** | Convert each 50-digit string to a big integer type; add sequentially.                               | _O(100)_ / _O(1)_       | When an arbitrary-precision type or library is available (Python, Java, JS, C++ + Boost etc.). |
+| **B — Manual column addition**     | Simulate grade-school addition: sum the 100 digits in each column right-to-left, propagate carries. | _O(50 × 100)_ / _O(50)_ | For environments that lack big-int support or when teaching the algorithmic idea.              |
+
+***
