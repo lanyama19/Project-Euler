@@ -14,3 +14,4 @@
 * [Problem 11: Largest product in a grid](problem-11-largest-product-in-a-grid.md)
 * [Problem 12: Highly divisible triangular number](problem-12-highly-divisible-triangular-number.md)
 * [Problem 13: Large sum](problem-13-large-sum.md)
+* [Problem 14: Longest Collatz sequence](problem-14-longest-collatz-sequence.md)
