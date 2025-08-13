@@ -19,4 +19,9 @@ You can also find a compiled version of my solutions on [GitBook](https://frankm
 * [Problem 10: Summation of primes](problem-10-summation-of-primes.md)
 * [Problem 11: Largest product in a grid](problem-11-largest-product-in-a-grid.md)
 * [Problem 12: Highly divisible triangular number](problem-12-highly-divisible-triangular-number.md)
+* [Problem 13: Large sum](problem-13-large-sum.md)
+* [Problem 14: Longest Collatz sequence](problem-14-longest-collatz-sequence.md)
+* [Problem 15: Lattice paths](problem-15-lattice-paths.md)
+* [Problem 16: Power digit sum](problem-16-power-digit-sum.md)
+* [Problem 17: Number letter counts](problem-17-number-letter-counts.md)
 
