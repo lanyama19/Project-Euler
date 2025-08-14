@@ -18,3 +18,4 @@
 * [Problem 15: Lattice paths](problem-15-lattice-paths.md)
 * [Problem 16: Power digit sum](problem-16-power-digit-sum.md)
 * [Problem 17: Number letter counts](problem-17-number-letter-counts.md)
+* [Problem 18: Maximum path sum I](problem-18-maximum-path-sum-i.md)
