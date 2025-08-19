@@ -24,4 +24,6 @@ You can also find a compiled version of my solutions on [GitBook](https://frankm
 * [Problem 15: Lattice paths](problem-15-lattice-paths.md)
 * [Problem 16: Power digit sum](problem-16-power-digit-sum.md)
 * [Problem 17: Number letter counts](problem-17-number-letter-counts.md)
+* [Problem 18: Maximum path sum I](problem-18-maximum-path-sum-i.md)
+* [Problem 67: Maximum path sum II](problem-67-maximum-path-sum-ii.md)
 

@@ -20,3 +20,4 @@
 * [Problem 17: Number letter counts](problem-17-number-letter-counts.md)
 * [Problem 18: Maximum path sum I](problem-18-maximum-path-sum-i.md)
 * [Problem 67: Maximum path sum II](problem-67-maximum-path-sum-ii.md)
+* [Problem 19: Counting Sundays](problem-19-counting-sundays.md)
