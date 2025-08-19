@@ -19,3 +19,37 @@ The full data can be downloaded from Project Euler's website: [https://projecteu
 
 ## Solution&#x20;
 
+We can directly use the DP method from problem 18:
+
+{% content-ref url="problem-18-maximum-path-sum-i.md" %}
+[problem-18-maximum-path-sum-i.md](problem-18-maximum-path-sum-i.md)
+{% endcontent-ref %}
+
+## Code
+
+```python
+import urllib.request
+
+def load_triangle_from_url(url: str) -> list[list[int]]:
+    resp = urllib.request.urlopen(url)
+    text = resp.read().decode('utf-8')
+    triangle = [[int(num) for num in line.split()] for line in text.strip().split('\n')]
+    return triangle
+
+def max_path_sum(triangle: list[list[int]]) -> int:
+    dp = triangle[-1][:]
+    for r in range(len(triangle) - 2, -1, -1):
+        for c in range(len(triangle[r])):
+            dp[c] = triangle[r][c] + max(dp[c], dp[c + 1])
+    return dp[0]
+
+if __name__ == "__main__":
+    url = "https://projecteuler.net/project/resources/p067_triangle.txt"
+    try:
+        tri = load_triangle_from_url(url)
+        result = max_path_sum(tri)
+        print("Problem 67 result:", result)
+    except Exception as e:
+        print("Error loading triangle from URL:", e)
+
+```
