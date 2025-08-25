@@ -21,3 +21,4 @@
 * [Problem 18: Maximum path sum I](problem-18-maximum-path-sum-i.md)
 * [Problem 67: Maximum path sum II](problem-67-maximum-path-sum-ii.md)
 * [Problem 19: Counting Sundays](problem-19-counting-sundays.md)
+* [Problem 20: Factorial digit sum](problem-20-factorial-digit-sum.md)
