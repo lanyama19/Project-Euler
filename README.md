@@ -28,4 +28,5 @@ You can also find a compiled version of my solutions on [GitBook](https://frankm
 * [Problem 67: Maximum path sum II](problem-67-maximum-path-sum-ii.md)
 * [Problem 19: Counting Sundays](problem-19-counting-sundays.md)
 * [Problem 20: Factorial digit sum](problem-20-factorial-digit-sum.md)
+* [Problem 21: Amicable numbers](problem-21-amicable-numbers.md)
 
