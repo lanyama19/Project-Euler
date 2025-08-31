@@ -24,3 +24,5 @@
 * [Problem 20: Factorial digit sum](problem-20-factorial-digit-sum.md)
 * [Problem 21: Amicable numbers](problem-21-amicable-numbers.md)
 * [Problem 22: Names scores](problem-22-names-scores.md)
+* [Problem 23: Non-abundant sums](problem-23-non-abundant-sums.md)
+* [Problem 24: Lexicographic permutations](problem-24-lexicographic-permutations.md)
